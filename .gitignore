@@ -1,5 +1,8 @@
 .*
 .vs*
+*.rsa
+*.ps1
+
 appsettings.*
 obj/
 bin/
