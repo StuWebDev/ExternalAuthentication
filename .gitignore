@@ -1,0 +1,10 @@
+.*
+.vs*
+appsettings.*
+obj/
+bin/
+identityserver4_log.txt
+Properties/
+
+
+!.gitignore
