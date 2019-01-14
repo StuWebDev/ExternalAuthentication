@@ -88,6 +88,16 @@ namespace Host.Quickstart.Account
                 throw new Exception("External authentication error");
             }
 
+            // Uncomment to see a log of the Claims
+            //ClaimsPrincipal principalResult = result.Principal as ClaimsPrincipal;
+            //if (null != principalResult)
+            //{
+            //    foreach (Claim claim in principalResult.Claims)
+            //    {
+            //        Console.WriteLine("CLAIM TYPE: " + claim.Type + "; CLAIM VALUE: " + claim.Value);
+            //    }
+            //}
+
             // OK - lookup our user and external provider info
             var (user, provider, providerUserId, claims) = await FindUserFromExternalProviderAsync(result);
 
@@ -104,7 +114,6 @@ namespace Host.Quickstart.Account
             }
 
             // OK - Used to store data needed for signout from those protocols.
-            // May still need to use this to update any changes
             var additionalLocalClaims = new List<Claim>();
 
             // OK - Add state to cookie I create
@@ -115,10 +124,9 @@ namespace Host.Quickstart.Account
             additionalLocalClaims.AddRange(principal.Claims);
             var name = principal.FindFirst(JwtClaimTypes.Name)?.Value ?? user.Id;
 
-            // _events. RaiseAsync seems to be what's creating the Cookie
             await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id, name));
 
-            // OK - This is now logging them in after I created them in my database
+            // OK - This is our Cookie
             await HttpContext.SignInAsync(user.Id, name, provider, localSignInProps, additionalLocalClaims.ToArray());
 
             // OK - Delete temporary cookie used during external authentication
@@ -247,14 +255,16 @@ namespace Host.Quickstart.Account
             {
                 filtered.Add(new Claim(JwtClaimTypes.Email, email));
             }
+
             // Picture
-            var picture = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Picture).Value;
+            var picture = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Picture)?.Value;
             if (picture != null)
             {
                 filtered.Add(new Claim(JwtClaimTypes.Picture, picture));
             }
 
             // Make a simple user with UserName and E-mail
+            // add a picture if there is one
             var user = new ApplicationUser
             {
                 UserName = Guid.NewGuid().ToString(),
@@ -282,17 +292,6 @@ namespace Host.Quickstart.Account
         }
         private async Task<ApplicationUser> UpdateExternalUser(ApplicationUser user, IEnumerable<Claim> claims)
         {
-            // I could update this function to just loop throught the claims
-            // Although only update the claims that are non-essential
-            // Sanity check user identity??
-            // ClaimsPrincipal principal = HttpContext.Current.User as ClaimsPrincipal;  
-            // if (null != principal)  
-            // {  
-            // foreach (Claim claim in principal.Claims)  
-            // {  
-            //     Response.Write("CLAIM TYPE: " + claim.Type + "; CLAIM VALUE: " + claim.Value + "</br>");  
-            // }  
-            // }
             var oldName = user.Name;
             var oldPicture = user.Picture;
 
@@ -311,7 +310,7 @@ namespace Host.Quickstart.Account
             }
 
             // latest picture
-            var picture = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Picture).Value;
+            var picture = claims.FirstOrDefault(x => x.Type == JwtClaimTypes.Picture)?.Value;
             if (picture != null && picture != oldPicture)
             {
                 // Write to database

@@ -7,12 +7,22 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <p>Would you like to logout of IdentityServer?</p>
+            <p>Would you like to logout of IdentityServer Demo?</p>
             <form asp-action="Logout">
-                <input type="hidden" name="logoutId" value="@Model.LogoutId"  />
+                <input type="hidden" name="logoutId" value="@Model.LogoutId" />
                 <fieldset>
                     <div class="form-group">
                         <button class="btn btn-primary">Yes</button>
+                    </div>
+                </fieldset>
+            </form>
+            <p>or...</p>
+            <p>Would you like to remove your user information from IdentityServer Demo?</p>
+            <form asp-action="Delete">
+                <input type="hidden" name="logoutId" value="@Model.LogoutId" />
+                <fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-danger">Yes</button>
                     </div>
                 </fieldset>
             </form>

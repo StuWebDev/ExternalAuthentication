@@ -1,4 +1,5 @@
 ﻿@using IdentityServer4.Extensions
+@using System.Security.Claims
 @{
     string name = null;
     if (!true.Equals(ViewData["signed-out"]))
@@ -35,7 +36,6 @@
                     </span>
                 </a>
             </div>
-
             @if (!string.IsNullOrWhiteSpace(name))
             {
                 <ul class="nav navbar-nav">
@@ -47,13 +47,33 @@
                     </li>
                 </ul>
             }
+            else
+            {
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="~/Account/Login">log in.</a>
+                    </li>
+                </ul>
+            }
         </div>
     </div>
+
+    @if (!string.IsNullOrWhiteSpace(name))
+    {
+    <div>
+        <h3>A list of claims that I will pass on to the Client who requests your "openid profile" for authentication.</h3>
+        @foreach (Claim claim in Context.User.Claims)
+        {
+        <p>
+            "CLAIM TYPE: " @claim.Type "; CLAIM VALUE: " @claim.Value"
+        </p>
+        }
+    </div>
+    }
 
     <div class="container body-content">
         @RenderBody()
     </div>
-
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     @RenderSection("scripts", required: false)

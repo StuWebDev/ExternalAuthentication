@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace IdentityServer4.Quickstart.UI
 {
@@ -146,7 +147,6 @@ namespace IdentityServer4.Quickstart.UI
             var vm = await BuildLoginViewModelAsync(model);
             return View(vm);
         }
-
         
         // Show logout page
         [HttpGet]
@@ -197,29 +197,40 @@ namespace IdentityServer4.Quickstart.UI
             return View("LoggedOut", vm);
         }
 
+        // ADDED - Simple Delete User postback as this is just a DEMO
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(LogoutInputModel model)
+        {
+            // build a model so the logged out page knows what to display
+            var vm = await BuildLoggedOutViewModelAsync(model.LogoutId);
 
-        // Register a user
-        // [HttpPost]
-        // [ValidateAntiForgeryToken]
-        // public async Task<IActionResult> Register(ApplicationUser model)
-        // {
-        //    if (ModelState.IsValid)
-        //     {
-        //         var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-        //         var result = await _userManager.CreateAsync(user);
-        //         if (result.Succeeded)
-        //         {
-        //             _logger.LogInformation("User created a new account with password.");
+            if (User?.Identity.IsAuthenticated == true)
+            {
+                // delete local authentication cookie
+                await _signInManager.SignOutAsync();
 
-        //             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-        //             // var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-        //             // await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                // Find if user is in my database
+                var user = await _userManager.FindByIdAsync(User.GetSubjectId());
 
-        //             await _signInManager.SignInAsync(user, isPersistent: false);
-        //             _logger.LogInformation("User created a new account with password.");
-        //         }
-        //     }
-        // }
+                // delete from table storage
+                await _userManager.DeleteAsync(user);
+            }
+
+            // check if we need to trigger sign-out at an upstream identity provider
+            if (vm.TriggerExternalSignout)
+            {
+                // build a return URL so the upstream provider will redirect back
+                // to us after the user has logged out. this allows us to then
+                // complete our single sign-out processing.
+                //string url = Url.Action("Logout", new { logoutId = vm.LogoutId });
+
+                // this triggers a redirect to the external provider for sign-out
+                //return SignOut(new AuthenticationProperties { RedirectUri = url }, vm.ExternalAuthenticationScheme);
+            }
+
+            return View("LoggedOut", vm);
+        }
 
         /*****************************************/
         /* helper APIs for the AccountController */
