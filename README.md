@@ -100,64 +100,83 @@ The next step will be adding APIs protected behind TFA.
 
 
 
-### References:
+### References
 
 #### OpenID Connect & OAuth
-	DOCS
-		- [OpenID Connect](https://openid.net/connect/)
-		- [OAuth](https://oauth.net/2/)
-	VIDEO
-		- [Nate Barbettini for Okta - 1 hour](https://www.youtube.com/watch?v=996OiexHze0&index=2&t=0s&list=PLpV5iycDoGxmheirI659J7E22DvS5AwVk)
-	EXAMPLES
-		- [Jerrie Pelser](https://www.jerriepelser.com/blog/authenticate-oauth-aspnet-core-2/)
+
+Docs
+- [OpenID Connect](https://openid.net/connect/)
+- [OAuth](https://oauth.net/2/)
+
+Video
+- [Nate Barbettini for Okta - 1 hour](https://www.youtube.com/watch?v=996OiexHze0&index=2&t=0s&list=PLpV5iycDoGxmheirI659J7E22DvS5AwVk)
+
+Examples
+- [Jerrie Pelser](https://www.jerriepelser.com/blog/authenticate-oauth-aspnet-core-2/)
+
 
 #### IdentityServer 4
-	DOCS
-		- [Official Documentaion](https://identityserver4.readthedocs.io/en/release/)
-	NEWS
-		- [Dom Baier](https://leastprivilege.com/)
-	VIDEO
-		- [Brock Allen & Scott Hansleman - 2 hours](https://mva.microsoft.com/en-us/training-courses/introduction-to-identityserver-for-aspnet-core-17945)
-	EXAMPLES
-		- [Startup.cs](https://github.com/IdentityServer/IdentityServer4/blob/master/host/Startup.cs)
+
+Docs
+- [Official Documentaion](https://identityserver4.readthedocs.io/en/release/)
+
+News
+- [Dom Baier](https://leastprivilege.com/)
+
+Video
+- [Brock Allen & Scott Hansleman - 2 hours](https://mva.microsoft.com/en-us/training-courses/introduction-to-identityserver-for-aspnet-core-17945)
+
+Examples
+- [Startup.cs](https://github.com/IdentityServer/IdentityServer4/blob/master/host/Startup.cs)
+
 
 #### ASP.NET Identity
-	DOCS
-		- [Introduction to Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity)
-	VIDEO
-		- [Jeremy Foster & Adam Tuliper - 4:30 hours](https://www.youtube.com/watch?v=ipAwOGzpxpQ)
-		- [Identity with Nate - 1 hour talk @Microsoft](https://www.youtube.com/watch?v=z2iCddrJRY8)
-	EXAMPLES
-		- [Introduction to Identity](https://digitalmccullough.com/posts/aspnetcore-auth-system-demystified.html)
-	EXTERNAL PROVIDERS
-		- Google = [Register your app](https://console.cloud.google.com) & [See the docs](https://myaccount.google.com/.well-known/openid-configuration)
-		- Microsoft = [Register your app](https://apps.dev.microsoft.com) & [See the docs](https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration)
-		- LinkedIn = [Register your app](https://www.linkedin.com/developer/apps) & [See the docs](https://docs.microsoft.com/en-us/linkedin/shared/authentication/authentication?context=linkedin/consumer/context)
-		- facebook = [Register your app](https://developers.facebook.com/) & [See the docs](https://developers.facebook.com/docs/graph-api/reference/)
-		- [Google Authentication for .NET](https://cloud.google.com/dotnet/docs/getting-started/authenticate-users)
-		- [Google OpenID Connect, how to...](https://developers.google.com/identity/protocols/OpenIDConnect)
-		- [Microsoft OpenID Connect, how to...](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-protocols-openid-connect-code)
-	USEFUL DOCS
-		- [User Manager, and methods.](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.usermanager-1)
-		- [UserStore, and methods.](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.iuserstore-1)
-		- [UserClaims, and methods.](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.iuserclaimstore-1)
-		- [UserLogin, and methods.](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.iuserloginstore-1)
-		- [Persist additional claims](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/additional-claims)
+
+Docs
+- [Introduction to Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity)
+
+Video
+- [Jeremy Foster & Adam Tuliper - 4:30 hours](https://www.youtube.com/watch?v=ipAwOGzpxpQ)
+- [Identity with Nate - 1 hour talk @Microsoft](https://www.youtube.com/watch?v=z2iCddrJRY8)
+
+Examples
+- [Introduction to Identity](https://digitalmccullough.com/posts/aspnetcore-auth-system-demystified.html)
+
+External Providers
+- Google = [Register your app](https://console.cloud.google.com) & [See the docs](https://myaccount.google.com/.well-known/openid-configuration)
+- Microsoft = [Register your app](https://apps.dev.microsoft.com) & [See the docs](https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration)
+- LinkedIn = [Register your app](https://www.linkedin.com/developer/apps) & [See the docs](https://docs.microsoft.com/en-us/linkedin/shared/authentication/authentication?context=linkedin/consumer/context)
+- facebook = [Register your app](https://developers.facebook.com/) & [See the docs](https://developers.facebook.com/docs/graph-api/reference/)
+- [Google Authentication for .NET](https://cloud.google.com/dotnet/docs/getting-started/authenticate-users)
+- [Google OpenID Connect, how to...](https://developers.google.com/identity/protocols/OpenIDConnect)
+- [Microsoft OpenID Connect, how to...](https://docs.microsoft.com/en-us/azure/active-directory/develop/v1-protocols-openid-connect-code)
+
+Useful documentation
+- [User Manager, and methods.](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.usermanager-1)
+- [UserStore, and methods.](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.iuserstore-1)
+- [UserClaims, and methods.](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.iuserclaimstore-1)
+- [UserLogin, and methods.](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.iuserloginstore-1)
+- [Persist additional claims](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/additional-claims)
+
 
 #### Azure Table Storage
-	DOCS
-		- [Quickstarts](https://docs.microsoft.com/en-us/azure/storage/)
-		- [Table Service REST APIs](https://docs.microsoft.com/en-us/rest/api/storageservices/table-service-rest-api)
-		- [Design Guide](https://docs.microsoft.com/en-us/azure/cosmos-db/table-storage-design-guide)
-		- [Concurrency in Azure Blob Storage](https://azure.microsoft.com/es-es/blog/managing-concurrency-in-microsoft-azure-storage-2/)
-		- [Overview for .NET](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-custom-storage-providers)
-		- [Getting Started with .NET](https://docs.microsoft.com/en-gb/azure/cosmos-db/table-storage-how-to-use-dotnet)
-	EXAMPLES
-		- [Tahir Naushad tutorial](https://www.c-sharpcorner.com/article/azure-table-storage-in-asp-net-core-2-0/)
-		- [Tahir Naushad on GitHub](https://github.com/TahirNaushad/Fiver.Azure.Table)
-		- [RavenDb example on GitHub, Startup.cs configuration.](https://github.com/JudahGabriel/RavenDB.Identity/blob/master/RavenDB.Identity/UserStore.cs)
-		- [Dave Melendez on GitHub](https://github.com/dlmelendez/identityazuretable/)
-	PACKAGES
-		- [El Camino by Dave Melendez](https://www.nuget.org/packages/ElCamino.AspNet.Identity.AzureTable/)
-	DEVELOPMENT
-		- [Storage Emulator, on SSMS on (local)\MSSQLLocalDb engine](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator)
+
+Docs
+- [Quickstarts](https://docs.microsoft.com/en-us/azure/storage/)
+- [Table Service REST APIs](https://docs.microsoft.com/en-us/rest/api/storageservices/table-service-rest-api)
+- [Design Guide](https://docs.microsoft.com/en-us/azure/cosmos-db/table-storage-design-guide)
+- [Concurrency in Azure Blob Storage](https://azure.microsoft.com/es-es/blog/managing-concurrency-in-microsoft-azure-storage-2/)
+- [Overview for .NET](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-custom-storage-providers)
+- [Getting Started with .NET](https://docs.microsoft.com/en-gb/azure/cosmos-db/table-storage-how-to-use-dotnet)
+
+Examples
+- [Tahir Naushad tutorial](https://www.c-sharpcorner.com/article/azure-table-storage-in-asp-net-core-2-0/)
+- [Tahir Naushad on GitHub](https://github.com/TahirNaushad/Fiver.Azure.Table)
+- [RavenDb example on GitHub, Startup.cs configuration.](https://github.com/JudahGabriel/RavenDB.Identity/blob/master/RavenDB.Identity/UserStore.cs)
+- [Dave Melendez on GitHub](https://github.com/dlmelendez/identityazuretable/)
+
+Packages
+- [El Camino by Dave Melendez](https://www.nuget.org/packages/ElCamino.AspNet.Identity.AzureTable/)
+
+Development
+- [Storage Emulator, on SSMS on (local)\MSSQLLocalDb engine](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator)
